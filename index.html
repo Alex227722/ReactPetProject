@@ -20,14 +20,6 @@
   <div class="dark"></div>
   <div class="dark-7"></div>
 
-  <script type="module" src="/src/main.tsx"></script>
-
-  <!-- <script src="/js/jquery-3.6.0.min.js"></script> -->
-  <!-- <script src="/js/swiper-bundle.min.js"></script>
-  <script src="/js/select2.full.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script> -->
-  <!-- <script src="public/js/main.js"></script> -->
-
   <script>
     (function () {
       function getBase() {
@@ -71,11 +63,8 @@
         });
       }
 
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', normalizeAll);
-      } else {
-        normalizeAll();
-      }
+      // run immediately and also observe future nodes
+      normalizeAll();
 
       var mo = new MutationObserver(function (records) {
         records.forEach(function (rec) {
@@ -88,11 +77,13 @@
       });
 
       try {
-        mo.observe(document.body, { childList: true, subtree: true });
+        mo.observe(document.documentElement || document.body, { childList: true, subtree: true });
       } catch (e) {
       }
     })();
   </script>
+
+  <script type="module" src="/src/main.tsx"></script>
 
 </body>
 
