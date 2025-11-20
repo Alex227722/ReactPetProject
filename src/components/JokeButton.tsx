@@ -4,29 +4,27 @@ const JokeButton: React.FC = () => {
   const [joke, setJoke] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Функція для перекладу через DeepL API
+  // Переклад через серверний проксі (Vercel function)
   const translateJoke = async (text: string) => {
-    const apiKey = '7e91acdd-7b78-40c1-b4fd-b91ffd098a6a:fx'; // Ваш DeepL API ключ
     try {
-      const response = await fetch('https://api-free.deepl.com/v2/translate', {
+      const response = await fetch('/api/translate', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          auth_key: apiKey,
-          text: text,
-          target_lang: 'UK', // Українська мова
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text, target_lang: 'UK' }),
       });
+      if (!response.ok) {
+        const err = await response.json().catch(() => ({}));
+        console.error('Server translation error', err);
+        return text;
+      }
       const data = await response.json();
       if (data.translations && data.translations[0]) {
         return data.translations[0].text;
       }
-      return text; // Повертаємо оригінал, якщо переклад не вдався
+      return text;
     } catch (error) {
       console.error('Помилка перекладу:', error);
-      return text; // Повертаємо оригінал у разі помилки
+      return text;
     }
   };
 
