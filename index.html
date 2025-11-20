@@ -19,6 +19,35 @@
 
   <div class="dark"></div>
   <div class="dark-7"></div>
+
+  <!-- normalize incorrect img srcs inserted by static content or external markdown -->
+  <script>
+    (function normalizeImageSrcs(){
+      function fixImg(el){
+        if(!el || !el.getAttribute) return;
+        var s = el.getAttribute('src') || '';
+        if(!s) return;
+        if(/^src\/assets\//.test(s)) el.src = s.replace(/^src\/assets\//, '/assets/');
+        else if(/^\/src\/assets\//.test(s)) el.src = s.replace(/^\/src\/assets\//, '/assets/');
+        else if(/^\/images\//.test(s)) el.src = s.replace(/^\/images\//, '/assets/images/');
+        else if(/^images\//.test(s)) el.src = s.replace(/^images\//, '/assets/images/');
+      }
+      try{
+        document.querySelectorAll('img').forEach(fixImg);
+        var mo = new MutationObserver(function(mutations){
+          mutations.forEach(function(m){
+            m.addedNodes.forEach(function(n){
+              if(n.nodeType!==1) return;
+              if(n.tagName==='IMG') fixImg(n);
+              n.querySelectorAll && n.querySelectorAll('img').forEach(fixImg);
+            });
+          });
+        });
+        mo.observe(document.documentElement || document.body, { childList: true, subtree: true });
+      }catch(e){console.error('img normalization error', e)}
+    })();
+  </script>
+
   <script type="module" src="/src/main.tsx"></script>
 
   <!-- <script src="/js/jquery-3.6.0.min.js"></script> -->
