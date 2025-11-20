@@ -1,4 +1,5 @@
 import React from 'react';
+import { assetPath } from '../utils/assetPath';
 
 interface SectionDescriptionProps {
   title: string;
@@ -42,8 +43,8 @@ const paragraphText = [
 ];
 
 const images = [
-  'src/assets/images/about/img-1.png',
-  'src/assets/images/about/img-2.png',
+  assetPath('assets/images/about/img-1.png'),
+  assetPath('assets/images/about/img-2.png'),
 ];
 
 function Text() {

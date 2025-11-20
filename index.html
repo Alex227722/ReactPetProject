@@ -27,7 +27,73 @@
   <script src="/js/select2.full.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.7.1/jszip.min.js"></script> -->
   <!-- <script src="public/js/main.js"></script> -->
-  
+
+  <script>
+    (function () {
+      function getBase() {
+        var link = document.querySelector('link[rel="shortcut icon"]');
+        if (link) {
+          var href = link.getAttribute('href') || '';
+          var idx = href.indexOf('assets/');
+          if (idx !== -1) return href.slice(0, idx);
+        }
+        return '/';
+      }
+
+      var BASE = getBase();
+
+      function normalizeImgElement(img) {
+        try {
+          var raw = img.getAttribute('src') || '';
+          if (!raw) return;
+
+          if (raw.indexOf('/src/assets/') !== -1) raw = raw.replace('/src/assets/', '/assets/');
+          if (raw.indexOf('src/assets/') === 0) raw = raw.replace(/^src\//, '');
+          if (raw.indexOf('/images/') === 0) raw = raw.replace('/images/', 'assets/images/');
+
+          if (raw.indexOf('assets/') === 0) {
+            img.src = (BASE.endsWith('/') ? BASE : BASE + '/') + raw;
+            return;
+          }
+
+          if (raw.indexOf('/assets/') === 0) {
+            var baseRoot = BASE.replace(/\/$/, '');
+            img.src = baseRoot + raw;
+            return;
+          }
+        } catch (e) {
+        }
+      }
+
+      function normalizeAll() {
+        document.querySelectorAll('img').forEach(function (img) {
+          normalizeImgElement(img);
+        });
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', normalizeAll);
+      } else {
+        normalizeAll();
+      }
+
+      var mo = new MutationObserver(function (records) {
+        records.forEach(function (rec) {
+          rec.addedNodes.forEach(function (node) {
+            if (node.nodeType !== 1) return;
+            if (node.tagName === 'IMG') normalizeImgElement(node);
+            node.querySelectorAll && node.querySelectorAll('img').forEach(normalizeImgElement);
+          });
+        });
+      });
+
+      try {
+        mo.observe(document.body, { childList: true, subtree: true });
+      } catch (e) {
+      }
+    })();
+  </script>
+
 </body>
 
 </html>
