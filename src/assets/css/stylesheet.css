@@ -1,0 +1,160 @@
+/* Havryl Thin */
+@font-face {
+    font-family: 'Havryl';
+    src:
+        url('../font/Havryl-Thin.woff2') format('woff2'),
+        url('../font/Havryl-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Havryl Thin Italic */
+@font-face {
+    font-family: 'Havryl';
+    src:
+        url('../font/Havryl-Thin-Italic.woff2') format('woff2'),
+        url('../font/Havryl-Thin-Italic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Havryl Extra Light */
+@font-face {
+    font-family: 'Havryl';
+    src:
+        url('../font/Havryl-Extra-Light.woff2') format('woff2'),
+        url('../font/Havryl-Extra-Light.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Havryl Extra Light Italic */
+@font-face {
+    font-family: 'Havryl';
+    src:
+        url('../font/Havryl-Extra-Light-Italic.woff2') format('woff2'),
+        url('../font/Havryl-Extra-Light-Italic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Havryl Light */
+@font-face {
+    font-family: 'Havryl';
+
+    src: u url('../font/Havryl-Light.woff2') format('woff2'),
+        url('../font/Havryl-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Havryl Light Italic */
+@font-face {
+    font-family: 'Havryl';
+
+    src:
+        url('../font/Havryl-Light-Italic.woff2') format('woff2'),
+        url('../font/Havryl-Light-Italic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Havryl Regular */
+@font-face {
+    font-family: 'Havryl';
+
+    src:
+        url('../font/Havryl-Regular.woff2') format('woff2'),
+        url('../font/Havryl-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Havryl Italic */
+@font-face {
+    font-family: 'Havryl';
+
+    src:
+        url('../font/Havryl-Regular-Italic.woff2') format('woff2'),
+        url('../font/Havryl-Regular-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Havryl Medium */
+@font-face {
+    font-family: 'Havryl';
+
+    src:
+        url('../font/Havryl-Medium.woff2') format('woff2'),
+        url('../font/Havryl-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Havryl Medium Italic */
+@font-face {
+    font-family: 'Havryl';
+
+    src:
+        url('../font/Havryl-Medium-Italic.woff2') format('woff2'),
+        url('../font/Havryl-Medium-Italic.woff') format('woff'), ;
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Havryl Semi Bold */
+@font-face {
+    font-family: 'Havryl';
+
+    src:
+        url('../font/Havryl-Semi-Bold.woff2') format('woff2'),
+        url('../font/Havryl-Semi-Bold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Havryl Semi Bold Italic */
+@font-face {
+    font-family: 'Havryl';
+    src:
+        url('../font/Havryl-Semi-Bold-Italic.woff2') format('woff2'),
+        url('../font/Havryl-Semi-Bold-Italic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+/* Havryl Bold */
+@font-face {
+    font-family: 'Havryl';
+
+    src:
+        url('../font/Havryl-Bold.woff2') format('woff2'),
+        url('../font/Havryl-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Havryl Bold Italic */
+@font-face {
+    font-family: 'Havryl';
+    src:
+        url('../font/Havryl-Bold-Italic.woff2') format('woff2'),
+        url('../font/Havryl-Bold-Italic.woff') format('woff');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+}
