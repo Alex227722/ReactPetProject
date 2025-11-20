@@ -6,6 +6,7 @@ import NextButton from './components/NextButton';
 import useHeaderHeight from './components/useHeaderHeight';
 import CartHeader from './components/CartHeader';
 import { useGlobalContext } from './GlobalContext';
+import { assetPath } from './utils/assetPath';
 
 type HeaderProps = {
   setHeaderHeight: (height: number) => void;
@@ -52,8 +53,8 @@ function Header({ setHeaderHeight }: HeaderProps) {
   return (
     <>
       <header className="header" id="section-top">
-        <img className="header__top-img header__top-img-1" src="images/index/img-top-1.png" alt="img" />
-        <img className="header__top-img header__top-img-2" src="images/index/img-top-2.png" alt="img" />
+        <img className="header__top-img header__top-img-1" src={assetPath('assets/images/index/img-top-1.png')} alt="img" />
+        <img className="header__top-img header__top-img-2" src={assetPath('assets/images/index/img-top-2.png')} alt="img" />
 
         <div className="fill">
           <div className="header__top" ref={headerTopRef}>
