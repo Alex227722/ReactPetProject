@@ -117,8 +117,10 @@ main.active .bg-main {
   --background: #F8F8F8;
 }
 
-a:hover {
-  opacity: 0.8;
+a:hover,
+.cart-icon:hover,
+.joke-button:hover {
+  opacity: 0.8 !important;
 }
 
 .swiper-button-next.swiper-button-disabled,
