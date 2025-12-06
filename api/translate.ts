@@ -6,40 +6,33 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return;
   }
 
-  const { text, target_lang = 'UK' } = req.body || {};
+  const { text, target_lang = 'uk' } = req.body as { text: string; target_lang?: string };
 
   if (!text) {
-    res.status(400).json({ error: 'Missing text' });
-    return;
-  }
-
-  const apiKey = process.env.DEEPL_API_KEY;
-  if (!apiKey) {
-    res.status(500).json({ error: 'Missing DeepL API key on server' });
+    res.status(400).json({ error: 'Text is required' });
     return;
   }
 
   try {
-    const params = new URLSearchParams({
-      auth_key: apiKey,
-      text: text,
-      target_lang: String(target_lang),
-    });
-
-    const r = await fetch('https://api-free.deepl.com/v2/translate', {
+    const response = await fetch('https://libretranslate.de/translate', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: params.toString(),
+      body: JSON.stringify({
+        q: text,
+        source: 'en',  
+        target: target_lang,
+        format: 'text',
+      }),
+      headers: { 'Content-Type': 'application/json' },
     });
 
-    const data = await r.json();
-    if (!r.ok) {
-      res.status(r.status).json({ error: data });
-      return;
+    if (!response.ok) {
+      throw new Error('Translation failed');
     }
 
-    res.status(200).json(data);
-  } catch (err: any) {
-    res.status(500).json({ error: err?.message || String(err) });
+    const data = await response.json() as { translatedText: string };
+    res.status(200).json({ translations: [{ text: data.translatedText }] });
+  } catch (error) {
+    console.error('Translation error:', error);
+    res.status(500).json({ error: 'Translation failed' });
   }
 }
