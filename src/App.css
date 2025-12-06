@@ -123,6 +123,7 @@ a:hover,
   opacity: 0.8 !important;
 }
 
+
 .swiper-button-next.swiper-button-disabled,
 .swiper-button-prev.swiper-button-disabled {
   pointer-events: auto;
