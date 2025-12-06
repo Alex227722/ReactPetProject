@@ -21,14 +21,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     const response = await fetch(`https://api.mymemory.translated.net/get?${params.toString()}`);
 
+    console.log('MyMemory status:', response.status);  // Лог статусу
+
     if (!response.ok) {
+      const errorText = await response.text();
+      console.error('MyMemory error:', errorText);  // Лог помилки від MyMemory
       throw new Error('Translation failed');
     }
 
     const data = await response.json() as { responseData: { translatedText: string } };
     res.status(200).json({ translations: [{ text: data.responseData.translatedText }] });
   } catch (error) {
-    console.error('Translation error:', error);
+    console.error('Full translation error:', error);  // Детальний лог помилки
     res.status(500).json({ error: 'Translation failed' });
   }
 }
