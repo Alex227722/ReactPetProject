@@ -1,5 +1,4 @@
 import React from 'react';
-import { assetPath } from '../utils/assetPath';
 
 interface SectionDescriptionProps {
   title: string;
@@ -16,7 +15,12 @@ function SectionDescription({ title, paragraphText, images }: SectionDescription
           <div className="category_description-img">
             <div className="category_description-img-box">
               {images.map((image, index) => (
-                <img key={index} src={image} alt={`Image ${index + 1}`} />
+                <img 
+                  key={index} 
+                  src={`${import.meta.env.BASE_URL}${image}`} 
+                  alt={`Image ${index + 1}`}
+                  onError={(e) => (e.currentTarget.style.display = 'none')}  // Ховаємо, якщо 404
+                />
               ))}
             </div>
           </div>
@@ -43,8 +47,8 @@ const paragraphText = [
 ];
 
 const images = [
-  assetPath('assets/images/about/img-1.png'),
-  assetPath('assets/images/about/img-2.png'),
+  'assets/images/about/img-1.png',  // Без 'src/' — Vite знайде в public
+  'assets/images/about/img-2.png',
 ];
 
 function Text() {
@@ -52,4 +56,3 @@ function Text() {
 }
 
 export default Text;
-

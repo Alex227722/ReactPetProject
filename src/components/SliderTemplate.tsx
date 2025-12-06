@@ -29,9 +29,9 @@ const SliderTemplate: React.FC<SliderTemplateProps> = ({ title, sectionId }) => 
               <div className="swiper-img-bg">
                 <img
                   className="swiper-img"
-                  src={`/assets/images/sliders/${style.previewImg}`}
+                  src={`${import.meta.env.BASE_URL}assets/images/sliders/${style.previewImg}`}
                   alt={`${style.name} ${style.variant}`}
-                  onError={(e) => (e.currentTarget.src = '/assets/images/placeholder.png')}
+                  onError={(e) => (e.currentTarget.src = `${import.meta.env.BASE_URL}assets/images/placeholder.png`)}
                 />
               </div>
             </div>

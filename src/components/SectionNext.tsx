@@ -96,8 +96,9 @@ const SectionNext: React.FC = () => {
                       <div className="swiper-big-inner">
                         <img
                           className="swiper-big-img"
-                          src={`/assets/images/sliders-2/${style.fullImg}`}
+                          src={`${import.meta.env.BASE_URL}assets/images/sliders-2/${style.fullImg}`}
                           alt={`${style.name} ${style.variant}`}
+                          onError={(e) => (e.currentTarget.style.display = 'none')}  // Ховаємо, якщо 404
                         />
                       </div>
                     </div>

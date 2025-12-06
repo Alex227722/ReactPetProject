@@ -87,10 +87,10 @@ const ProductCard: React.FC<ProductCardProps> = ({
       )}
       <div className="product-img-box">
         <img
-          src={`/assets/images/sliders/${previewImg}`}
+          src={`${import.meta.env.BASE_URL}assets/images/sliders/${previewImg}`}
           alt={`${name} ${variant}`}
           className="product-img"
-          onError={(e) => (e.currentTarget.src = '/assets/images/placeholder.png')}
+          onError={(e) => (e.currentTarget.src = `${import.meta.env.BASE_URL}assets/images/placeholder.png`)}
         />
       </div>
       <h2 className="product-title">{name}</h2>

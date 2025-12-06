@@ -9,7 +9,7 @@ const SectionDownload = () => {
     const isTelegram = /telegram/i.test(navigator.userAgent);
     console.log('isTelegram: ', isTelegram);
 
-    const directLink = './downloads/Havryl_Style.zip';
+    const directLink = `${import.meta.env.BASE_URL}downloads/Havryl_Style.zip`;
 
     if (isTelegram) {
       alert('Перейдіть за цим посиланням, щоб завантажити архів: ' + directLink);
@@ -21,8 +21,8 @@ const SectionDownload = () => {
 
     const zip = new JSZip();
 
-    const imagePath = './images/havril/HAVRYL.png';
-    const musicPath = './images/havril/HAVRYL.mp3';
+    const imagePath = `${import.meta.env.BASE_URL}assets/images/havril/HAVRYL.png`;
+    const musicPath = `${import.meta.env.BASE_URL}assets/images/havril/HAVRYL.mp3`;
 
     async function fetchFile(path: string): Promise<Blob> {
       const response = await fetch(path);
@@ -54,17 +54,6 @@ const SectionDownload = () => {
     } catch (error) {
       console.error('Помилка завантаження файлів:', error);
     }
-  };
-
-  // Створюємо функцію для додавання до кошика
-  const handleAddToCart = () => {
-    const product = {
-      id: 'havryl-style', // Унікальний ідентифікатор продукту
-      name: 'Havryl Style', // Назва продукту
-      variant: 'Regular', // Наприклад, можна отримати з вибраних чекбоксів
-      previewImg: './images/havril/HAVRYL.png', // Шлях до зображення
-    };
-    addToCart(product); // Передаємо об'єкт CartItem
   };
 
   return (
@@ -102,9 +91,6 @@ const SectionDownload = () => {
             <button className="btn-download" onClick={handleDownload}>
               Завантажити
             </button>
-            {/* <button className="btn-download" onClick={handleAddToCart}>
-              Додати до кошика
-            </button> */}
           </div>
         </div>
       </div>
