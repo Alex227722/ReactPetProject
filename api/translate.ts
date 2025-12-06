@@ -14,23 +14,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const response = await fetch('https://libretranslate.de/translate', {
-      method: 'POST',
-      body: JSON.stringify({
-        q: text,
-        source: 'en',  
-        target: target_lang,
-        format: 'text',
-      }),
-      headers: { 'Content-Type': 'application/json' },
+    const params = new URLSearchParams({
+      q: text,
+      langpair: `en|${target_lang}`,
     });
+
+    const response = await fetch(`https://api.mymemory.translated.net/get?${params.toString()}`);
 
     if (!response.ok) {
       throw new Error('Translation failed');
     }
 
-    const data = await response.json() as { translatedText: string };
-    res.status(200).json({ translations: [{ text: data.translatedText }] });
+    const data = await response.json() as { responseData: { translatedText: string } };
+    res.status(200).json({ translations: [{ text: data.responseData.translatedText }] });
   } catch (error) {
     console.error('Translation error:', error);
     res.status(500).json({ error: 'Translation failed' });
