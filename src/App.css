@@ -118,11 +118,9 @@ main.active .bg-main {
 }
 
 a:hover,
-.cart-icon:hover,
 .joke-button:hover {
   opacity: 0.8 !important;
 }
-
 
 .swiper-button-next.swiper-button-disabled,
 .swiper-button-prev.swiper-button-disabled {
@@ -2291,6 +2289,12 @@ body.active footer {
   background-color: rgb(255, 255, 255);
   border: 2px solid rgb(204, 204, 204);
   cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.cart-icon:hover {
+  border: 2px solid var(--gaming-tuf) !important;
+  transition: all 0.3s linear;
 }
 
 .cart-badge {

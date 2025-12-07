@@ -149,7 +149,7 @@ const ThemeToggle: React.FC = () => {
 
       {/* Кнопка перемикання */}
       <div 
-        className={`time-circle ${isNight ? 'switched' : ''}`}
+        className={`time-circle ${isNight ? 'switched' : 'cart-icon' }`}
         onClick={toggleTheme}
         style={{
           width: '36px',
