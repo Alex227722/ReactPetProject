@@ -48,7 +48,7 @@ const CartModal: React.FC = () => {
               {cartItems.map((item) => (
                 <li key={item.id} className="cart-item">
                   <img
-                    src={`/assets/images/sliders/${item.previewImg}`}
+                    src={`${import.meta.env.BASE_URL}assets/images/sliders/${item.previewImg}`}
                     alt={`${item.name} ${item.variant}`}
                     className="cart-item-img"
                     onError={(e) => (e.currentTarget.src = '/assets/images/placeholder.png')}
