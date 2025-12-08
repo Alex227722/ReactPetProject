@@ -17,6 +17,9 @@ function Header({ setHeaderHeight }: HeaderProps) {
   const btnRef = useRef<HTMLButtonElement>(null);
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
+  const isGamePage = pathname === '/about';
+  const isCompare = pathname === '/compare';
+  const isLike = pathname === '/like';
   const { headerHeight, headerTopRef } = useHeaderHeight();
   const { cartItems, comparisonList, favoritesList, setActiveModal } = useGlobalContext();
 
@@ -51,7 +54,7 @@ function Header({ setHeaderHeight }: HeaderProps) {
 
   return (
     <>
-      <header className="header" id="section-top">
+      <header className={`header ${isGamePage || isCompare || isLike ? 'header--small' : ''}`} id="section-top">
         {/* <img 
           className="header__top-img header__top-img-1" 
           src={`${import.meta.env.BASE_URL}images/index/img-top-1.png`} 
@@ -182,8 +185,8 @@ function Header({ setHeaderHeight }: HeaderProps) {
                       )}
                     </li>
                     <li>
-                      <RouterLink to="/about" className="next-block" onClick={() => setMenuActive(false)}>
-                        Про нас
+                      <RouterLink to="/about" className="next-block games-link" onClick={() => setMenuActive(false)}>
+                        Гра
                       </RouterLink>
                     </li>
                   </ul>

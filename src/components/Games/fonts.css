@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'Black Ops One';
+  src: url('./fonts/Causten-Bold.woff') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; 
+}
+@font-face {
+  font-family: 'Black Ops One';
+  src: url('./fonts/Causten-Light.woff') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; 
+}
+@font-face {
+  font-family: 'Black Ops One';
+  src: url('./fonts/Causten-Medium.woff') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; 
+}
+@font-face {
+  font-family: 'Black Ops One';
+  src: url('./fonts/Causten-Regular.woff') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; 
+}
+@font-face {
+  font-family: 'Black Ops One';
+  src: url('./fonts/Causten-Semi-Bold.woff') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; 
+}
+
+
+
