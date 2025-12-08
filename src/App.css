@@ -932,7 +932,7 @@ textarea:hover {
     height: 44px; */
   }
 
-  body:has(.header__burger-menu.dark-mode) .header__burg-btn svg rect:nth-child(1) {
+  body:has(.header__burger-menu.active) .header__burg-btn svg rect:nth-child(1) {
     translate: -100% 0;
     transition: all 0.3s linear;
   }
@@ -946,7 +946,7 @@ textarea:hover {
     fill: var(--gaming-tuf) !important;
   }
 
-  body.dark-mode .header__burg-btn svg rect {
+  .dark-mode .header__burg-btn svg rect {
     fill: var(--bw-white);
   }
 
@@ -964,7 +964,7 @@ textarea:hover {
     z-index: 10;
   }
 
-  .header__burger-menu.dark-mode {
+  .header__burger-menu.active {
     display: block;
     left: 0;
   }
@@ -1019,8 +1019,8 @@ textarea:hover {
     stroke: var(--bw-white);
   }
 
-  .header__burg-btn-close svg.dark-mode {
-    rotate: 360deg;
+  .header__burger-menu.active .header__burg-btn-close svg {
+    rotate: 180deg;
     transition: all 0.7s linear;
   }
 
