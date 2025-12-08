@@ -20,6 +20,7 @@ function Header({ setHeaderHeight }: HeaderProps) {
   const isGamePage = pathname === '/about';
   const isCompare = pathname === '/compare';
   const isLike = pathname === '/like';
+   const isCheckout = pathname === '/checkout';
   const { headerHeight, headerTopRef } = useHeaderHeight();
   const { cartItems, comparisonList, favoritesList, setActiveModal } = useGlobalContext();
 
@@ -54,7 +55,7 @@ function Header({ setHeaderHeight }: HeaderProps) {
 
   return (
     <>
-      <header className={`header ${isGamePage || isCompare || isLike ? 'header--small' : ''}`} id="section-top">
+      <header className={`header ${isGamePage || isCompare || isLike || isCheckout ? 'header--small' : ''}`} id="section-top">
         {/* <img 
           className="header__top-img header__top-img-1" 
           src={`${import.meta.env.BASE_URL}images/index/img-top-1.png`} 

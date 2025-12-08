@@ -1,5 +1,5 @@
 import { Outlet } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import ButtonTop from './components/ButtonTop';
@@ -11,42 +11,45 @@ import AuthModal from './components/AuthModal';
 import { useGlobalContext } from './GlobalContext';
 
 function Layout() {
-  const { 
-    headerHeight, 
-    setHeaderHeight, 
-    activeModal,          
-    setActiveModal,       
-    actionMessage       
+  const {
+    headerHeight,
+    setHeaderHeight,
+    activeModal,
+    setActiveModal,
+    actionMessage,
   } = useGlobalContext();
 
   useEffect(() => {
-    if (activeModal === null) { 
+    if (activeModal === null) {
       document.body.classList.remove('ReactModal__Body--open');
     }
   }, [activeModal]);
 
-  return (
-    <>
-      <Header setHeaderHeight={setHeaderHeight} />
-      <main className="bg-main">
-        <Outlet />
-        <JokeButton />
-      </main>
-      <ButtonTop />
-      <MusicButton />
-      <Footer />
+ 
+    return (
+      <>
+       
+          <Header setHeaderHeight={setHeaderHeight} />
+          <main className="bg-main">
+            <Outlet />
+            <JokeButton />
+          </main>
+          <ButtonTop />
+          <MusicButton />
+          <Footer />
+
+          {activeModal === 'cart' && <CartModal />}
+          {activeModal === 'auth' && <AuthModal />}
+          {activeModal === 'action' && (
+            <ActionModal
+              isOpen={true}
+              message={actionMessage}
+              onClose={() => setActiveModal(null)}
+            />
+          )}
       
-      {activeModal === 'cart' && <CartModal />}
-      {activeModal === 'auth' && <AuthModal />}
-      {activeModal === 'action' && (
-        <ActionModal 
-          isOpen={true}
-          message={actionMessage}
-          onClose={() => setActiveModal(null)}
-        />
-      )}
-    </>
-  );
-}
+      </>
+    );
+  }
 
 export default Layout;

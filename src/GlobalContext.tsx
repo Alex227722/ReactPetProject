@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 type CartItem = {
   id: string;
@@ -14,13 +14,13 @@ type GlobalContextType = {
   // Header
   headerHeight: number;
   setHeaderHeight: (height: number) => void;
-  
+
   // Cart
   cartItems: CartItem[];
   addToCart: (product: CartItem) => void;
   removeFromCart: (productId: string) => void;
   clearCart: () => void;
-  
+
   // Comparison & Favorites
   comparisonList: string[];
   favoritesList: string[];
@@ -28,33 +28,39 @@ type GlobalContextType = {
   removeFromComparison: (productId: string) => void;
   addToFavorites: (productId: string) => void;
   removeFromFavorites: (productId: string) => void;
-  
+
   // 1 поле + 1 функція для ВСІХ модалок!
   activeModal: ActiveModal;
   setActiveModal: (modal: ActiveModal) => void;
   actionMessage: string;
-  
+
   // Старий openActionModal (для зворотної сумісності)
   openActionModal: (message: string) => void;
+
+  isNight: boolean;
+  toggleNight: () => void;
 };
+
 
 const GlobalContext = createContext<GlobalContextType>({
   headerHeight: 0,
-  setHeaderHeight: () => {},
+  setHeaderHeight: () => { },
   cartItems: [],
-  addToCart: () => {},
-  removeFromCart: () => {},
-  clearCart: () => {},
+  addToCart: () => { },
+  removeFromCart: () => { },
+  clearCart: () => { },
   comparisonList: [],
   favoritesList: [],
-  addToComparison: () => {},
-  removeFromComparison: () => {},
-  addToFavorites: () => {},
-  removeFromFavorites: () => {},
+  addToComparison: () => { },
+  removeFromComparison: () => { },
+  addToFavorites: () => { },
+  removeFromFavorites: () => { },
   activeModal: null,
-  setActiveModal: () => {},
+  setActiveModal: () => { },
   actionMessage: '',
-  openActionModal: () => {},
+  openActionModal: () => { },
+  isNight: false,
+  toggleNight: () => { },
 });
 
 export const GlobalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -63,7 +69,8 @@ export const GlobalProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [comparisonList, setComparisonList] = useState<string[]>([]);
   const [favoritesList, setFavoritesList] = useState<string[]>([]);
-  
+  const [isNight, setIsNight] = useState<boolean>(false);
+
   // 1 стан для ВСІХ модалок!
   const [activeModal, setActiveModal] = useState<ActiveModal>(null);
   const [actionMessage, setActionMessage] = useState('');
@@ -99,10 +106,36 @@ export const GlobalProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     setFavoritesList((prev) => prev.filter((id) => id !== productId));
   };
 
+  const toggleNight = () => {
+    setIsNight(prev => !prev);
+  };
+
+  useEffect(() => {
+    if (isNight) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [isNight]);
+
+
+  useEffect(() => {
+    try {
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        const nightMode = savedTheme === 'night';
+        setIsNight(nightMode);
+      }
+    } catch (error) {
+      console.warn('Cannot load theme from localStorage:', error);
+      setIsNight(false);
+    }
+  }, []);
+
   // 1 функція для відкриття модалок!
   const openCartModal = () => setActiveModal('cart');
   const openAuthModal = () => setActiveModal('auth');
-  
+
   const openActionModal = (message: string) => {
     setActionMessage(message);
     setActiveModal('action');
@@ -129,6 +162,8 @@ export const GlobalProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         setActiveModal,
         actionMessage,
         openActionModal,
+        isNight,
+        toggleNight,
       }}
     >
       {children}

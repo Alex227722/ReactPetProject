@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useGlobalContext } from '../GlobalContext';
 
+
 function Checkout() {
   const { cartItems, clearCart } = useGlobalContext();
   const [formData, setFormData] = useState({
@@ -29,7 +30,7 @@ function Checkout() {
         <h2>Оформлення замовлення</h2>
         {cartItems.length === 0 ? (
           <div className="text-center">
-            <p className="margin-0">🛒 Кошик порожній</p>
+            <p>🛒 Кошик порожній</p>
             <RouterLink to="/" className="btn btn-primary">Додати товари</RouterLink>
           </div>
         ) : (

@@ -1,37 +1,16 @@
 
 import React, { useState, useEffect } from 'react'
 
+import { useGlobalContext } from '../GlobalContext';
+
 const ThemeToggle: React.FC = () => {
-  const [isNight, setIsNight] = useState(false)
+  const { isNight, toggleNight } = useGlobalContext();
   const [isTransitioning, setIsTransitioning] = useState(false)
   const [wipeStyle, setWipeStyle] = useState({
     clipPath: 'circle(0px at 0px 0px)',
     opacity: 0,
     background: '#ffffff'
   })
-
-  // Завантажуємо тему при старті
-  useEffect(() => {
-    try {
-      const savedTheme = localStorage.getItem('theme')
-      const nightMode = savedTheme === 'night'
-      setIsNight(nightMode)
-    } catch (error) {
-      // Fallback якщо localStorage недоступний
-      setIsNight(false)
-    }
-  }, [])
-
-  // Застосовуємо тему до body (єдине виключення для глобальних стилів)
-  useEffect(() => {
-    if (isNight) {
-      document.body.classList.add('active')
-      document.getElementById('fullpage')?.classList.add('night')
-    } else {
-      document.body.classList.remove('active')
-      document.getElementById('fullpage')?.classList.remove('night')
-    }
-  }, [isNight])
 
   const toggleTheme = () => {
     if (isTransitioning) return
@@ -76,24 +55,16 @@ const ThemeToggle: React.FC = () => {
 
       // Коли заливка покрила ~50% екрану - міняємо тему
       if (!themeChanged && progress > 0.5) {
-        themeChanged = true
-        setIsNight(newNightMode)
+        themeChanged = true;
+        toggleNight();
         
-        // Застосовуємо тему до DOM
-        if (newNightMode) {
-          document.body.classList.add('active')
-          document.getElementById('fullpage')?.classList.add('night')
-        } else {
-          document.body.classList.remove('active')
-          document.getElementById('fullpage')?.classList.remove('night')
-        }
-        
+
         // Зберігаємо в localStorage
-        try {
-          localStorage.setItem('theme', newNightMode ? 'night' : 'day')
-        } catch (error) {
-          console.warn('Cannot save theme to localStorage:', error)
-        }
+       try {
+        localStorage.setItem('theme', newNightMode ? 'night' : 'day');
+      } catch (error) {
+        console.warn('Cannot save theme to localStorage:', error);
+      }
       }
 
       // Оновлюємо стиль через React state
@@ -149,7 +120,7 @@ const ThemeToggle: React.FC = () => {
 
       {/* Кнопка перемикання */}
       <div 
-        className={`time-circle ${isNight ? 'switched' : 'cart-icon' }`}
+        className={`time-circle ${isNight ? 'switched' : '' }`}
         onClick={toggleTheme}
         style={{
           width: '36px',
@@ -175,62 +146,3 @@ const ThemeToggle: React.FC = () => {
 }
 
 export default ThemeToggle
-
-// import { useState, useEffect } from 'react'
-
-// function ThemeToggle() {
-//   const [isNight, setIsNight] = useState(false)
-
-//   // Завантажуємо тему з localStorage при старті
-//   useEffect(() => {
-//     const savedTheme = localStorage.getItem('theme')
-//     const nightMode = savedTheme === 'night'
-//     setIsNight(nightMode)
-    
-//     // Додаємо/знімаємо класи
-//     if (nightMode) {
-//       document.body.classList.add('active')
-//       document.getElementById('fullpage')?.classList.add('night')
-//     }
-//   }, [])
-
-//   // Перемикання теми
-//   const toggleTheme = () => {
-//     const newNightMode = !isNight
-//     setIsNight(newNightMode)
-    
-//     if (newNightMode) {
-//       document.body.classList.add('active')
-//       document.getElementById('fullpage')?.classList.add('night')
-//       localStorage.setItem('theme', 'night')
-//     } else {
-//       document.body.classList.remove('active')
-//       document.getElementById('fullpage')?.classList.remove('night')
-//       localStorage.setItem('theme', 'day')
-//     }
-//   }
-
-//   return (
-//     <div 
-//       className={`time-circle ${isNight ? 'switched' : ''}`}
-//       onClick={toggleTheme}
-//       style={{
-//         width: '36px',
-//         height: '36px',
-//         borderRadius: '50%',
-//         backgroundColor: isNight ? '#333' : '#fff',
-//         border: '2px solid #ccc',
-//         cursor: 'pointer',
-//         display: 'flex',
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//         transition: 'all 0.3s ease',
-//         marginRight: 0,
-//       }}
-//     >
-//       {isNight ? '🌙' : '☀️'}
-//     </div>
-//   )
-// }
-
-// export default ThemeToggle
