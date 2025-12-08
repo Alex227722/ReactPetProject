@@ -110,7 +110,7 @@
 }
 
 .button-c {
-	right: 260px;
+	right: 135px;
 }
 
 .buttons.on {
@@ -197,6 +197,10 @@
 .off.off-3 {
 	opacity: 1;
 	transition: all 0.3s linear;
+}
+
+.off.off-2.off-3 {
+	opacity: 0;
 }
 
 .pos-absolute {
@@ -449,7 +453,8 @@
 
 .trail-8 {
 	max-width: 100px;
-	/* height: 100px; */
+	height: 75px;
+	box-shadow: none !important;
 	/*border: 2px solid green;*/
 	margin-left: 225px;
 	transition: all 0.7s linear;
@@ -460,6 +465,10 @@
 		width: 100%;
 		height: 100%;
 	}
+}
+
+.trail-8 .bg-off {
+	opacity: 0;
 }
 
 /* .cheat .trail-8 {
@@ -510,8 +519,8 @@
 
 .mario {
 	position: absolute;
-	top: -50px;
-	right: -10px;
+	top: 0px;
+	right: -35px;
 	width: 70px !important;
 	height: 70px !important;
 	object-fit: contain;
@@ -522,14 +531,19 @@
 
 .princess {
 	position: absolute;
-	top: -50px;
-	left: -10px;
+	top: 0px;
+	left: 0;
 	width: 70px !important;
 	height: 70px !important;
 	object-fit: contain;
 	transform: scale(1.5) scaleX(-1);
 	transition: all 0.7s linear;
 	pointer-events: none;
+}
+
+.cheat .mario,
+.cheat .princess {
+	top: -90px;
 }
 
 .trail-8:hover::after {

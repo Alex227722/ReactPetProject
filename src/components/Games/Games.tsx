@@ -240,7 +240,7 @@ function Games() {
         </figure>
 
         <div className={`buttons buttons-m ${isOffTrail || isOffEnd ? 'off-3 off-2' : ''}`} id="blink">
-          Click on mario !!!
+          Hover on Mario !
           <svg viewBox="0 0 24 24" style={{ width: '50px', transform: 'rotate(45deg)' }}>
             <g>
               <circle cx="12" cy="12" r="10" style={{ fill: '#ece4b7' }} />
@@ -254,14 +254,14 @@ function Games() {
           className={`buttons button-c ${isTrail ? 'on' : ''} ${isOffTrail ? 'off-3' : ''}`}
           type="button"
           onClick={handleTrail}>
-          Cheat on/off
+          Cheat
         </button>
 
         <button
           className={`buttons ${isSnowActive ? 'on' : ''} ${isOffTrail ? 'off-3' : ''}`}
           type="button"
           onClick={handleSnowToggle}>
-          Hard level on/off
+          Hard
         </button>
 
         <img ref={marikRef} className={`marik hover-element ${isOffTrail ? 'off-3' : ''}`} src={img_m} width="50" height="50" alt="Mario" />
@@ -343,7 +343,7 @@ function Games() {
           style={{ position: 'relative', ...cursorStyleBig }}>
           {activeTrail >= 8 && (
             <>
-              <img src={bg_t} alt="image" />
+              <img className='bg-off'src={bg_t} alt="image" />
               <img className='mario' src={mario} alt="image" />
               <img className='princess' src={img_p} alt="Princess"/>
             </>
