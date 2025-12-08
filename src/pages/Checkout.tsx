@@ -41,7 +41,7 @@ function Checkout() {
                 {cartItems.map((item) => (
                   <li key={item.id} className="cart-item">
                     <img
-                      src={`/assets/images/sliders/${item.previewImg}`}
+                      src={`${import.meta.env.BASE_URL}assets/images/sliders/${item.previewImg}`}
                       alt={item.name}
                       className="cart-item-img"
                     />
