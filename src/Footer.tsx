@@ -9,7 +9,7 @@ function Footer() {
   const isHomePage = pathname === '/';
 
   useEffect(() => {
-    console.log('Footer headerHeight:', headerHeight);
+    // console.log('Footer headerHeight:', headerHeight);
   }, [headerHeight]);
 
   return (

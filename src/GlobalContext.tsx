@@ -63,6 +63,8 @@ const GlobalContext = createContext<GlobalContextType>({
   toggleNight: () => { },
 });
 
+
+
 export const GlobalProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   // Base states
   const [headerHeight, setHeaderHeight] = useState<number>(0);
@@ -74,6 +76,21 @@ export const GlobalProvider: React.FC<{ children: React.ReactNode }> = ({ childr
   // 1 стан для ВСІХ модалок!
   const [activeModal, setActiveModal] = useState<ActiveModal>(null);
   const [actionMessage, setActionMessage] = useState('');
+
+  useEffect(() => {
+    try {
+      const savedCart = localStorage.getItem('cartItems');
+      if (savedCart) setCartItems(JSON.parse(savedCart));
+
+      const savedComparison = localStorage.getItem('comparisonList');
+      if (savedComparison) setComparisonList(JSON.parse(savedComparison));
+
+      const savedFavorites = localStorage.getItem('favoritesList');
+      if (savedFavorites) setFavoritesList(JSON.parse(savedFavorites));
+    } catch (e) {
+      console.warn('Помилка завантаження з localStorage:', e);
+    }
+  }, []);  // ПУСТИЙ масив — тільки раз при монтуванні
 
   // Cart functions
   const addToCart = (product: CartItem) => {
@@ -131,6 +148,34 @@ export const GlobalProvider: React.FC<{ children: React.ReactNode }> = ({ childr
       setIsNight(false);
     }
   }, []);
+
+
+  // Збереження кошика
+  useEffect(() => {
+    if (cartItems.length > 0) {
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    } else {
+      localStorage.removeItem('cartItems'); // Якщо очистили — видаляємо ключ
+    }
+  }, [cartItems]);
+
+  // Збереження порівняння
+  useEffect(() => {
+    if (comparisonList.length > 0) {
+      localStorage.setItem('comparisonList', JSON.stringify(comparisonList));
+    } else {
+      localStorage.removeItem('comparisonList');
+    }
+  }, [comparisonList]);
+
+  // Збереження улюбленого
+  useEffect(() => {
+    if (favoritesList.length > 0) {
+      localStorage.setItem('favoritesList', JSON.stringify(favoritesList));
+    } else {
+      localStorage.removeItem('favoritesList');
+    }
+  }, [favoritesList]);
 
   // 1 функція для відкриття модалок!
   const openCartModal = () => setActiveModal('cart');

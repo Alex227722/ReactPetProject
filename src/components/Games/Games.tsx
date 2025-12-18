@@ -32,6 +32,8 @@ function Games() {
   const [isTrail, setTrail] = useState<boolean>(false);
   const [currentMusic, setCurrentMusic] = useState<string | null>(null);
 
+  const [isAudioUnlocked, setIsAudioUnlocked] = useState<boolean>(false);
+
   const audioRefs = {
     'myAudio': useRef<HTMLAudioElement>(null),
     'myAudio-1': useRef<HTMLAudioElement>(null),

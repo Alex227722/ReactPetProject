@@ -8,9 +8,9 @@ function useHeaderHeight() {
     if (headerTopRef.current) {
       const height = headerTopRef.current.offsetHeight;
       setHeaderHeight(height);
-      console.log('useHeaderHeight updated:', height);
+      // console.log('useHeaderHeight updated:', height);
     } else {
-      console.log('headerTopRef.current is null');
+      // console.log('headerTopRef.current is null');
     }
   };
 

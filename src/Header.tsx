@@ -20,7 +20,7 @@ function Header({ setHeaderHeight }: HeaderProps) {
   const isGamePage = pathname === '/about';
   const isCompare = pathname === '/compare';
   const isLike = pathname === '/like';
-   const isCheckout = pathname === '/checkout';
+  const isCheckout = pathname === '/checkout';
   const { headerHeight, headerTopRef } = useHeaderHeight();
   const { cartItems, comparisonList, favoritesList, setActiveModal } = useGlobalContext();
 
@@ -253,7 +253,6 @@ function Header({ setHeaderHeight }: HeaderProps) {
           <div className="header__top-title-box">
             <h1 className="header__top-title">HAVRYL</h1>
           </div>
-
           {/* {isHomePage && <NextButton targetId="section-next" offset={-headerHeight} />} */}
           <NextButton offset={-headerHeight} nthSection={1} />
         </div>
@@ -293,35 +292,35 @@ function Header({ setHeaderHeight }: HeaderProps) {
           </div>
 
           <div className="header__burg-scroll">
-             <div className="header__box header__box-mob">
-                  <RouterLink to="/compare" onClick={() => setMenuActive(false)}>
-                    <div className="comparison-icon cart-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <rect x="3" y="3" width="7" height="18" stroke="#FF4A1C" strokeWidth="2" />
-                        <rect x="14" y="8" width="7" height="13" stroke="#FF4A1C" strokeWidth="2" />
-                      </svg>
-                      {comparisonList.length > 0 && (
-                        <span className="cart-badge">{comparisonList.length}</span>
-                      )}
-                    </div>
-                  </RouterLink>
-
-                  <RouterLink to="/like" onClick={() => setMenuActive(false)}>
-                    <div className="favorites-icon cart-icon">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                        <path
-                          d="M12 21s-6-4.35-9-8.5C-1 6 5-1 12 5c7-6 13 1 9 7.5C18 16.65 12 21 12 21z"
-                          stroke="#FF4A1C"
-                          strokeWidth="2"
-                          fill="none"
-                        />
-                      </svg>
-                      {favoritesList.length > 0 && (
-                        <span className="cart-badge">{favoritesList.length}</span>
-                      )}
-                    </div>
-                  </RouterLink>
+            <div className="header__box header__box-mob">
+              <RouterLink to="/compare" onClick={() => setMenuActive(false)}>
+                <div className="comparison-icon cart-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <rect x="3" y="3" width="7" height="18" stroke="#FF4A1C" strokeWidth="2" />
+                    <rect x="14" y="8" width="7" height="13" stroke="#FF4A1C" strokeWidth="2" />
+                  </svg>
+                  {comparisonList.length > 0 && (
+                    <span className="cart-badge">{comparisonList.length}</span>
+                  )}
                 </div>
+              </RouterLink>
+
+              <RouterLink to="/like" onClick={() => setMenuActive(false)}>
+                <div className="favorites-icon cart-icon">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 21s-6-4.35-9-8.5C-1 6 5-1 12 5c7-6 13 1 9 7.5C18 16.65 12 21 12 21z"
+                      stroke="#FF4A1C"
+                      strokeWidth="2"
+                      fill="none"
+                    />
+                  </svg>
+                  {favoritesList.length > 0 && (
+                    <span className="cart-badge">{favoritesList.length}</span>
+                  )}
+                </div>
+              </RouterLink>
+            </div>
             <div className="header__top-inner">
               <nav className="header__nav">
                 <ul className="header__nav-list">
